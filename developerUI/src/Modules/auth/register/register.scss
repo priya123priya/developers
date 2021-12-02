@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+.form-control {
+    border-radius: 0% !important;
+    background-color: #f0f0ef;
+}
+.form-control:focus {
+    box-shadow: none !important;
+}
+label{
+    font-weight: 500;
+    text-align: left !important;
+}
+.btnClass{
+    background-color: rgb(64, 39, 206);
+    color: white;
+}

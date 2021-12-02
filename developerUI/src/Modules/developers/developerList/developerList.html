@@ -1,0 +1,89 @@
+<div class="container">
+   <div class="row my-5">
+       <div class="col-4">
+        <Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2"  @click="addDialog()"/>
+        <Button label="Delete Select Data" @click="deleteDeveloper(selectedId)" :disabled="userIds.length > 0 ? false : true" icon="pi pi-trash" class="p-button-danger"  />
+       </div>
+   </div>
+   <div>
+       
+  
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" @change="selectAll($event)" v-model="allSelected"></th>
+                    <th>Profile</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="data in developersData">
+                      <td><input type="checkbox" v-model="userIds" @change="select" :value="data.id"></td>
+                    <td>
+                    <img :src="'http://localhost:8000/storage'+data.avatar" alt="Profile" srcset="" class="avatar">
+                    </td>
+                    <td>{{data.first_name}}</td>
+                    <td>{{data.last_name}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.phone}}</td>
+                    <td>
+                        <Button icon="pi pi-pencil" @click="editDialog(data)" class="p-button-rounded p-button-success p-mr-2" />
+                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning"  @click="deleteDeveloper(data.id)"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+        </div>
+        
+          <Dialog header="Developer" v-model:visible="display" :style="{width: '30vw'}" >
+            <div class="px-3">
+                <form>
+                    <div class="form-group">
+                        <label for="name">First Name</label>
+                        <input type="text" v-model="firstName" class="form-control" name="name"  placeholder="Enter firstname" id="name">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Last Name</label>
+                        <input type="text" v-model="lastName" class="form-control" name="name"  placeholder="Enter lastname" id="name">
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" v-model="phone" class="form-control" name="phone"  placeholder="Enter your phone number" id="phone">
+                      </div>
+                      <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea rows="3" cols="25" v-model="address" class="form-control" name="address" placeholder="Enter Address" id="address" ></textarea>
+                      </div>
+                      <div class="form-group">
+                      <label for="avatar">Choose a profile picture:</label>
+                       <input type="file"  id="avatar"  ref="file" @change="handleFileObject()" name="avatar" accept="image/png, image/jpeg">
+                       </div>
+                    <div class="form-group">
+                      <label for="name">Email</label>
+                      <input type="email"  v-model="email" class="form-control" name="name"  placeholder="Enter email" id="email">
+                    </div>
+                    <div class="form-group" v-if="type =='new'">
+                      <label for="pwd">Password</label>
+                      <input type="password" v-model="password" class="form-control" name="password"  placeholder="Enter password" id="pwd">
+                    </div>
+                    <div class="form-group" v-else>
+                     
+                    </div>
+                  </form>
+            </div>
+            <template #footer>
+                <Button label="close" class="p-button" @click="display = false" />
+                <Button label="save" @click="addDeveloper()" class="p-button-success" autofocus v-if="type == 'new'"/>
+                <Button label="update" @click="editDeveloper()" class="p-button-success" autofocus v-else/>
+            </template>
+        </Dialog>
+    </div>
+   </div>
+</div>

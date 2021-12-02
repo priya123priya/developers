@@ -1,0 +1,46 @@
+<div class="loginPage my-5"> 
+    <div class="row w-100">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 px-3 py-5">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4 class="mb-0">Register</h4>
+                </div>
+                <div class="card-body px-4 pb-5 py-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">First Name</label>
+                            <input type="text" v-model="firstName" class="form-control" name="name"  placeholder="Enter firstname" id="name">
+                          </div>
+                          <div class="form-group">
+                            <label for="name">Last Name</label>
+                            <input type="text" v-model="lastName" class="form-control" name="name"  placeholder="Enter lastname" id="name">
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" v-model="phone" class="form-control" name="phone"  placeholder="Enter your phone number" id="phone">
+                          </div>
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea rows="3" v-model="address" class="form-control" cols="25" name="address" placeholder="Enter Address" id="address" ></textarea>
+                          </div>
+                          <div class="form-group">
+                          <label for="avatar">Choose a profile picture:</label>
+                           <input type="file"  id="avatar"  ref="file" @change="handleFileObject()" name="avatar" accept="image/png, image/jpeg">
+                           </div>
+                        <div class="form-group">
+                          <label for="name">Email</label>
+                          <input type="email" v-model="email" class="form-control" name="name"  placeholder="Enter email" id="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Password</label>
+                          <input type="password" v-model="password" class="form-control" name="password"  placeholder="Enter password" id="pwd">
+                        </div>
+                        <button type="button" class="btn btnClass w-100" @click="register()">Register</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
